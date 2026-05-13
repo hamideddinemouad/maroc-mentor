@@ -1,0 +1,1 @@
+each task you do in this project you create a new branch for it you do your work at the you git add . and git commit it and git push remote and your merge to main and u push main 
