@@ -1,1 +1,3 @@
-each task you do in this project you create a new branch for it you do your work at the you git add . and git commit it and git push remote and your merge to main and u push main 
+
+
+always respect inherent project architechture and pattern if not do it the nextjs way according to best practice do 
