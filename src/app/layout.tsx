@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.marocmentor.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://maroc-mentor.vercel.app";
 const siteTitle = "Maroc Mentor";
 const siteDescription =
   "Accompagnement direct pour les dirigeants de PME qui veulent renforcer leur impact, leur calme et leur prise de décision.";
