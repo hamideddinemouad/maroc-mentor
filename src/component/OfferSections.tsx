@@ -212,7 +212,78 @@ export default function OfferSections() {
           </motion.div>
 
           <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)]">
-            <motion.div variants={reveal} className="grid gap-3">
+            <motion.div variants={reveal} className="grid gap-3 lg:hidden">
+              {timeline.map((item, index) => {
+                const isActive = index === activeExperience;
+
+                return (
+                  <div
+                    key={`${item.years}-${item.company}`}
+                    className={`overflow-hidden rounded-[1.35rem] border transition-all duration-200 ${
+                      isActive
+                        ? "border-[#d4b000]/28 bg-[#d4b000]/10 shadow-[0_20px_48px_rgba(0,0,0,0.18)]"
+                        : "border-white/10 bg-white/[0.03]"
+                    }`}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setActiveExperience(index)}
+                      className="flex w-full cursor-pointer items-center justify-between gap-4 px-4 py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b000] focus-visible:ring-inset"
+                    >
+                      <div>
+                        <p className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[#d4b000]">
+                          {item.years}
+                        </p>
+                        <h3 className="mt-2 text-base font-semibold text-white">
+                          {item.company}
+                        </h3>
+                        <p className="mt-1 text-sm text-white/58">{item.city}</p>
+                      </div>
+
+                      <span
+                        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-all duration-200 ${
+                          isActive
+                            ? "rotate-90 bg-[#d4b000] text-[#08111d]"
+                            : "bg-white/[0.04] text-white/50"
+                        }`}
+                      >
+                        <ChevronRightIcon />
+                      </span>
+                    </button>
+
+                    <AnimatePresence initial={false}>
+                      {isActive ? (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: reduceMotion ? 0 : 0.32, ease: revealEase }}
+                          className="overflow-hidden"
+                        >
+                          <div className="border-t border-white/8 px-4 pb-4 pt-4">
+                            <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/44">
+                              Fonction
+                            </p>
+                            <p className="mt-2 text-lg font-semibold text-white">
+                              {item.role}
+                            </p>
+
+                            <p className="mt-4 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/44">
+                              Resume
+                            </p>
+                            <p className="mt-2 text-sm leading-7 text-white/76">
+                              {item.summary}
+                            </p>
+                          </div>
+                        </motion.div>
+                      ) : null}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </motion.div>
+
+            <motion.div variants={reveal} className="hidden gap-3 lg:grid">
               {timeline.map((item, index) => {
                 const isActive = index === activeExperience;
 
@@ -253,7 +324,7 @@ export default function OfferSections() {
 
             <motion.div
               variants={reveal}
-              className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(13,18,28,0.94)_0%,rgba(6,10,16,0.98)_100%)] p-6 shadow-[0_24px_60px_rgba(0,0,0,0.22)] md:p-8"
+              className="hidden overflow-hidden rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(13,18,28,0.94)_0%,rgba(6,10,16,0.98)_100%)] p-6 shadow-[0_24px_60px_rgba(0,0,0,0.22)] md:p-8 lg:block"
             >
               <AnimatePresence mode="wait">
                 <motion.div

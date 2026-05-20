@@ -68,7 +68,7 @@ export default function SectionNav() {
   return (
     <nav
       aria-label="Navigation des sections"
-      className="fixed right-4 top-4 z-40 sm:right-6 sm:top-6 md:right-10 lg:right-14"
+      className="fixed left-1/2 top-3 z-40 w-[calc(100%-1rem)] max-w-[22rem] -translate-x-1/2 sm:top-4 md:left-auto md:right-10 md:top-6 md:w-auto md:max-w-none md:translate-x-0 lg:right-14"
     >
       <div className="flex items-center justify-center gap-1 rounded-full border border-white/10 bg-[#07101b]/78 p-1 shadow-[0_18px_40px_rgba(0,0,0,0.28)] backdrop-blur-xl sm:gap-0 sm:p-1.5">
         {sections.map((section) => {
@@ -79,7 +79,7 @@ export default function SectionNav() {
               key={section.id}
               href={`#${section.id}`}
               aria-current={isActive ? "page" : undefined}
-              className={`inline-flex min-h-9 items-center justify-center rounded-full px-3 text-[0.62rem] font-semibold uppercase tracking-[0.14em] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b000] focus-visible:ring-offset-2 focus-visible:ring-offset-[#07101b] sm:min-h-11 sm:px-4 sm:text-[0.72rem] sm:tracking-[0.18em] ${
+              className={`inline-flex min-h-8 flex-1 items-center justify-center rounded-full px-2.5 text-[0.56rem] font-semibold uppercase tracking-[0.12em] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b000] focus-visible:ring-offset-2 focus-visible:ring-offset-[#07101b] sm:min-h-11 sm:flex-none sm:px-4 sm:text-[0.72rem] sm:tracking-[0.18em] ${
                 isActive
                   ? "bg-[#d4b000] text-[#08111d]"
                   : "cursor-pointer text-white/68 hover:bg-white/6 hover:text-white"
