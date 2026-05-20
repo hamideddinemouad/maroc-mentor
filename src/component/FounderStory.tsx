@@ -119,7 +119,7 @@ export default function FounderStory() {
       opacity: 0,
       y: reduceMotion ? 0 : -12,
       filter: reduceMotion ? "none" : "blur(8px)",
-      transition: { duration: 0.28, ease: "easeIn" },
+      transition: { duration: 0.28, ease: [0.55, 0.06, 0.68, 0.19] as const },
     },
   };
   const progressRatio = (activeStep + 1) / steps.length;
