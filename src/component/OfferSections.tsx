@@ -89,7 +89,7 @@ function ChevronRightIcon() {
 
 export default function OfferSections() {
   const reduceMotion = useReducedMotion();
-  const [activeExperience, setActiveExperience] = useState<number | null>(0);
+  const [activeExperience, setActiveExperience] = useState<number | null>(null);
   const revealEase = [0.22, 1, 0.36, 1] as const;
   const reveal = {
     hidden: { opacity: 0, y: reduceMotion ? 0 : 24 },
