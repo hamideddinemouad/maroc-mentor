@@ -13,6 +13,7 @@ const steps = [
     paragraphs: [
       "En 2016, a 48 ans, j'ai pris l'avion pour Istanbul. Pas pour doubler mon salaire. Pour ne pas accepter l'echec.",
     ],
+    cta: false,
   },
   {
     eyebrow: "Le choc",
@@ -20,6 +21,7 @@ const steps = [
     paragraphs: [
       "ATTAWAFOK venait de fermer. Huit ans de direction, de 2007 a 2015. Une page douloureuse.",
     ],
+    cta: false,
   },
   {
     eyebrow: "Le choix",
@@ -27,6 +29,7 @@ const steps = [
     paragraphs: [
       "J'aurais pu chercher un poste confortable a Casablanca. J'ai choisi Istanbul.",
     ],
+    cta: false,
   },
   {
     eyebrow: "Le defi",
@@ -34,16 +37,19 @@ const steps = [
     paragraphs: [
       "Premier defi immediat: zero turc. Diriger une equipe de 80 personnes sans parler leur langue.",
     ],
+    cta: false,
   },
   {
     eyebrow: "Lecon de leadership",
     title: "L'autorite vient de la posture, pas des mots.",
     paragraphs: [],
+    cta: false,
   },
   {
     eyebrow: "Ce que je transmets",
     title: "L'echec bien vecu devient un capital pour diriger avec plus de justesse.",
     paragraphs: [],
+    cta: false,
   },
   {
     eyebrow: "Session decouverte 30 min offerte",
