@@ -85,6 +85,16 @@ export default function Footer() {
             Un point de contact simple pour poursuivre l&apos;&eacute;change, poser une
             question ou r&eacute;server un premier rendez-vous.
           </p>
+          <p className="mt-4 text-sm leading-6 text-white/54 md:text-base">
+            Mostafa Mounasser ·{" "}
+            <a
+              href="mailto:m.mounasser@gmail.com"
+              className="cursor-pointer transition-colors duration-200 hover:text-[#d4b000]"
+            >
+              m.mounasser@gmail.com
+            </a>{" "}
+            · Casablanca, Maroc
+          </p>
         </motion.div>
 
         <div className="grid gap-3 sm:grid-cols-3 md:min-w-[34rem]">
@@ -141,7 +151,7 @@ export default function Footer() {
                 T&eacute;l&eacute;phone
               </span>
               <span className="block text-sm font-medium text-white">
-                06 61 06 49 46
+                +212 661 06 49 46
               </span>
             </span>
           </motion.a>
