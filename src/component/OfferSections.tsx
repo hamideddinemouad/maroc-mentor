@@ -337,7 +337,7 @@ export default function OfferSections() {
                   transition={{ duration: 0.42, ease: revealEase }}
                 >
                   <p className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[#d4b000]">
-                    Experience choisie
+                    {activeItem.years}
                   </p>
                   <h3 className="mt-3 text-[clamp(1.8rem,3vw,2.8rem)] font-semibold leading-tight text-white">
                     {activeItem.role}

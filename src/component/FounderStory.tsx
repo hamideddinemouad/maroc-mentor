@@ -172,9 +172,6 @@ export default function FounderStory() {
                   <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#d4b000]">
                     Istanbul, 2016
                   </p>
-                  <p className="mt-2 text-xs uppercase tracking-[0.18em] text-white/44">
-                    {`Evenement ${activeStep + 1} / ${steps.length}`}
-                  </p>
                 </div>
 
                 <div className="w-28 sm:w-36">
