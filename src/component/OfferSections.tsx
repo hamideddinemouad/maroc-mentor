@@ -89,7 +89,7 @@ function ChevronRightIcon() {
 
 export default function OfferSections() {
   const reduceMotion = useReducedMotion();
-  const [activeExperience, setActiveExperience] = useState(0);
+  const [activeExperience, setActiveExperience] = useState<number | null>(0);
   const revealEase = [0.22, 1, 0.36, 1] as const;
   const reveal = {
     hidden: { opacity: 0, y: reduceMotion ? 0 : 24 },
@@ -99,7 +99,7 @@ export default function OfferSections() {
       transition: { duration: 0.68, ease: revealEase },
     },
   };
-  const activeItem = timeline[activeExperience];
+  const activeItem = activeExperience === null ? timeline[0] : timeline[activeExperience];
 
   return (
     <>
@@ -227,7 +227,9 @@ export default function OfferSections() {
                   >
                     <button
                       type="button"
-                      onClick={() => setActiveExperience(index)}
+                      onClick={() =>
+                        setActiveExperience((current) => (current === index ? null : index))
+                      }
                       className="flex w-full cursor-pointer items-center justify-between gap-4 px-4 py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b000] focus-visible:ring-inset"
                     >
                       <div>
@@ -288,13 +290,13 @@ export default function OfferSections() {
                 const isActive = index === activeExperience;
 
                 return (
-                  <button
-                    key={`${item.years}-${item.company}`}
-                    type="button"
-                    onClick={() => setActiveExperience(index)}
-                    className={`group flex w-full cursor-pointer items-center justify-between gap-4 rounded-[1.35rem] border px-4 py-4 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b000] focus-visible:ring-offset-2 focus-visible:ring-offset-[#05080d] ${
-                      isActive
-                        ? "border-[#d4b000]/28 bg-[#d4b000]/10 shadow-[0_20px_48px_rgba(0,0,0,0.18)]"
+                    <button
+                      key={`${item.years}-${item.company}`}
+                      type="button"
+                      onClick={() => setActiveExperience(index)}
+                      className={`group flex w-full cursor-pointer items-center justify-between gap-4 rounded-[1.35rem] border px-4 py-4 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b000] focus-visible:ring-offset-2 focus-visible:ring-offset-[#05080d] ${
+                        isActive
+                          ? "border-[#d4b000]/28 bg-[#d4b000]/10 shadow-[0_20px_48px_rgba(0,0,0,0.18)]"
                         : "border-white/10 bg-white/[0.03] hover:border-white/16 hover:bg-white/[0.05]"
                     }`}
                   >
