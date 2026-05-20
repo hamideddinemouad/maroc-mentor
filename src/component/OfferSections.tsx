@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useState } from "react";
 
 const calendlyUrl =
   "https://calendly.com/mostafa-marocmentor/session-decouverte-30-minutes-clone?utm_id=97758_v0_s00_e0_tv1_a1demoo3ja7o5y&fbclid=IwY2xjawRxZSFleHRuA2FlbQIxMABicmlkETBPMFVlNnpUR2Q0ZFhWQjB1c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHlWOt6tH2RBcSqYBd9azTPsPztAlKLXBzhiO7aoYmIi2stJIeGwAW8qcGDjj_aem_Beyyr0mjqH0QAdXSrJX_eQ";
@@ -17,24 +18,28 @@ const timeline = [
     role: "Directeur General",
     company: "Al Mouhassib Consulting",
     city: "Casablanca",
+    summary: "Structuration, conseil et vision long terme au service des entreprises.",
   },
   {
     years: "2007 - 2015",
     role: "Directeur General",
     company: "Attawafok Assurances",
     city: "Casablanca",
+    summary: "Pilotage, responsabilite operationnelle et gestion de la complexite au quotidien.",
   },
   {
     years: "2016 - 2023",
     role: "Directeur General",
     company: "Prime Estate & Prime Pazarlama",
     city: "Istanbul",
+    summary: "Direction en contexte international, adaptation rapide et leadership sans confort culturel.",
   },
   {
     years: "2026",
     role: "Fondateur",
     company: "Maroc Mentor",
     city: "Casablanca",
+    summary: "Transmission d'une experience dirigeante condensee en accompagnement utile et concret.",
   },
 ] as const;
 
@@ -65,8 +70,26 @@ const programs = [
   },
 ] as const;
 
+function ChevronRightIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m9 18 6-6-6-6" />
+    </svg>
+  );
+}
+
 export default function OfferSections() {
   const reduceMotion = useReducedMotion();
+  const [activeExperience, setActiveExperience] = useState(0);
   const revealEase = [0.22, 1, 0.36, 1] as const;
   const reveal = {
     hidden: { opacity: 0, y: reduceMotion ? 0 : 24 },
@@ -76,6 +99,7 @@ export default function OfferSections() {
       transition: { duration: 0.68, ease: revealEase },
     },
   };
+  const activeItem = timeline[activeExperience];
 
   return (
     <>
@@ -187,29 +211,100 @@ export default function OfferSections() {
             </h2>
           </motion.div>
 
-          <div className="mt-10 grid gap-4">
-            {timeline.map((item) => (
-              <motion.article
-                key={`${item.years}-${item.company}`}
-                variants={reveal}
-                className="grid gap-4 rounded-[1.5rem] border border-white/10 bg-white/[0.03] px-5 py-5 md:grid-cols-[11rem_minmax(0,1fr)_auto] md:items-center md:px-6"
-              >
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#d4b000]">
-                  {item.years}
-                </p>
-                <div>
-                  <h3 className="text-lg font-semibold text-white md:text-xl">
-                    {item.role}
-                  </h3>
-                  <p className="mt-1 text-sm text-white/68 md:text-base">
-                    {item.company}
+          <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)]">
+            <motion.div variants={reveal} className="grid gap-3">
+              {timeline.map((item, index) => {
+                const isActive = index === activeExperience;
+
+                return (
+                  <button
+                    key={`${item.years}-${item.company}`}
+                    type="button"
+                    onClick={() => setActiveExperience(index)}
+                    className={`group flex w-full cursor-pointer items-center justify-between gap-4 rounded-[1.35rem] border px-4 py-4 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b000] focus-visible:ring-offset-2 focus-visible:ring-offset-[#05080d] ${
+                      isActive
+                        ? "border-[#d4b000]/28 bg-[#d4b000]/10 shadow-[0_20px_48px_rgba(0,0,0,0.18)]"
+                        : "border-white/10 bg-white/[0.03] hover:border-white/16 hover:bg-white/[0.05]"
+                    }`}
+                  >
+                    <div>
+                      <p className="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[#d4b000]">
+                        {item.years}
+                      </p>
+                      <h3 className="mt-2 text-base font-semibold text-white md:text-lg">
+                        {item.company}
+                      </h3>
+                      <p className="mt-1 text-sm text-white/58">{item.city}</p>
+                    </div>
+
+                    <span
+                      className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-200 ${
+                        isActive
+                          ? "bg-[#d4b000] text-[#08111d]"
+                          : "bg-white/[0.04] text-white/50 group-hover:text-white/72"
+                      }`}
+                    >
+                      <ChevronRightIcon />
+                    </span>
+                  </button>
+                );
+              })}
+            </motion.div>
+
+            <motion.div
+              variants={reveal}
+              className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(13,18,28,0.94)_0%,rgba(6,10,16,0.98)_100%)] p-6 shadow-[0_24px_60px_rgba(0,0,0,0.22)] md:p-8"
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`${activeItem.years}-${activeItem.company}`}
+                  initial={{ opacity: 0, y: reduceMotion ? 0 : 18, filter: reduceMotion ? "none" : "blur(6px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, y: reduceMotion ? 0 : -12, filter: reduceMotion ? "none" : "blur(6px)" }}
+                  transition={{ duration: 0.42, ease: revealEase }}
+                >
+                  <p className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[#d4b000]">
+                    Experience choisie
                   </p>
-                </div>
-                <p className="text-sm uppercase tracking-[0.16em] text-white/54 md:text-right">
-                  {item.city}
-                </p>
-              </motion.article>
-            ))}
+                  <h3 className="mt-3 text-[clamp(1.8rem,3vw,2.8rem)] font-semibold leading-tight text-white">
+                    {activeItem.role}
+                  </h3>
+
+                  <div className="mt-6 grid gap-4 sm:grid-cols-3">
+                    <div className="rounded-[1.2rem] border border-white/10 bg-white/[0.03] p-4">
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/44">
+                        Periode
+                      </p>
+                      <p className="mt-3 text-base font-semibold text-white">
+                        {activeItem.years}
+                      </p>
+                    </div>
+
+                    <div className="rounded-[1.2rem] border border-white/10 bg-white/[0.03] p-4">
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/44">
+                        Structure
+                      </p>
+                      <p className="mt-3 text-base font-semibold text-white">
+                        {activeItem.company}
+                      </p>
+                    </div>
+
+                    <div className="rounded-[1.2rem] border border-white/10 bg-white/[0.03] p-4">
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/44">
+                        Ville
+                      </p>
+                      <p className="mt-3 text-base font-semibold text-white">
+                        {activeItem.city}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="mt-8 max-w-2xl text-base leading-8 text-white/76 md:text-lg">
+                    {activeItem.summary}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </motion.div>
           </div>
         </div>
       </motion.section>
